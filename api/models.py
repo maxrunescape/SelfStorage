@@ -14,3 +14,9 @@ class Profile(models.Model):
     last_modified = models.DateTimeField(auto_now=True)
     name = models.CharField(max_length=100, blank=True, default='')
     membership = models.ForeignKey(Membership, on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ('created',)
+
+    def save(self, *args, **kwargs):
+        super(Profile, self).save(*args, **kwargs)
